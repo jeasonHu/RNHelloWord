@@ -15,10 +15,12 @@ export default class indexroot extends Component {
         let defaultName = 'indexroot';
         return (
             <Navigator
-                initialRoute={{ component:EnterPage }}
+                initialRoute={{ component: EnterPage }}
                 //切换动画
                 configureScene={(route) => {
-                    return Navigator.SceneConfigs.HorizontalSwipeJump;
+                    var conf = Navigator.SceneConfigs.HorizontalSwipeJump;
+                    conf.gestures = null;
+                    return conf;
                 }}
 
                 renderScene={(route, navigator) => {

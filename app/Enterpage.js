@@ -56,8 +56,8 @@ const styles = StyleSheet.create({
         justifyContent: 'flex-end',
     },
     txt_img: {
-        width: 179,
-        height: 90, 
+        width: 160,
+        height: 81, 
         margin: 50,
     },
 });

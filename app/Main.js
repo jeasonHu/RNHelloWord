@@ -55,12 +55,10 @@ export default class MainPage extends Component {
                         size={100}
                         color="#FF7256" />
                         {this.renderContent('http://v2ex.com')} 
-            </View> */
-
-            <ScrollableTabView
-
-                style={styles.container1}
-                ref="tabView"
+            </View> */ 
+            <ScrollableTabView 
+                style={styles.container}
+                ref="tabView" 
                 tabBarPosition="bottom"
                 renderTabBar={() => <TabViewItem tabNames={this.state.tabNames} tabIconNames={this.state.tabIconNames} />}
                 scrollWithoutAnimation={true}>
@@ -82,14 +80,14 @@ export default class MainPage extends Component {
                 </View>
 
 
-            </ScrollableTabView>
+            </ScrollableTabView> 
 
         )
     }
 }
 
 const styles = StyleSheet.create({
-    container1: {
+    container: {
         flex: 1,
         backgroundColor: '#F5FCFF',
     },
