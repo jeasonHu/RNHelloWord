@@ -3,6 +3,7 @@ import {
     View,
     Image,
     StyleSheet,
+    StatusBar,
     Text,
 } from 'react-native';
 
@@ -25,7 +26,7 @@ export default class EnterPage extends Component {
                         params: {
                             from: 'EnterPage'
                         }
-                    }); 
+                    });
                 }
             },
             2000
@@ -39,7 +40,8 @@ export default class EnterPage extends Component {
     }
     render() {
         return (
-            <Image style={styles.bg_img} source={require('./img/bg_enter.jpg')} > 
+            <Image style={styles.bg_img} source={require('./img/bg_enter.jpg')} >
+                <StatusBar hidden={true} />
                 <Image style={styles.txt_img} source={require('./img/enter_text.png')} />
 
             </Image>
@@ -47,17 +49,17 @@ export default class EnterPage extends Component {
     }
 }
 
-const styles = StyleSheet.create({ 
+const styles = StyleSheet.create({
     bg_img: {
         flex: 1,
         width: null,
-        height: null, 
+        height: null,
         alignItems: 'center',
         justifyContent: 'flex-end',
     },
     txt_img: {
         width: 160,
-        height: 81, 
+        height: 81,
         margin: 50,
     },
 });
