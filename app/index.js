@@ -5,6 +5,8 @@ import {
     View,
     StatusBar,
     Navigator,
+    Platform,
+    BackAndroid,
 }
     from 'react-native';
 
@@ -13,10 +15,23 @@ import EnterPage from './Enterpage';
 
 export default class indexroot extends Component {
 
+    componentDidMount() {
+        if (Platform.OS === 'android') {
+            BackAndroid.addEventListener('hardwareBackPress', this.onBackAndroid);
+        }
+    }
+    componentWillUnmount() {
+        if (Platform.OS === 'android') {
+            BackAndroid.removeEventListener('hardwareBackPress', this.onBackAndroid);
+        }
+    }
+
+
     render() {
+
         let defaultName = 'indexroot';
         return (
-            <View style={{ flex: 1,  }}>
+            <View style={{ flex: 1, }}>
                 <StatusBar
                     backgroundColor='#FF8C69'
                     barStyle='light-content'
@@ -24,11 +39,11 @@ export default class indexroot extends Component {
                     hidden={false}
                 />
                 <Navigator
-                    style={{ flex: 1,  }}
+                    style={{ flex: 1, }}
                     initialRoute={{ component: EnterPage }}
                     //切换动画
                     configureScene={(route) => {
-                        var conf = Navigator.SceneConfigs.HorizontalSwipeJump;
+                        let conf = Navigator.SceneConfigs.HorizontalSwipeJump;
                         conf.gestures = null;
                         return conf;
                     }}

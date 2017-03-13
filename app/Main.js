@@ -10,19 +10,43 @@ import {
     Navigator,
     WebView,
     Platform,
+    BackAndroid,
 } from 'react-native';
 import ScrollableTabView, { DefaultTabBar, ScrollableTabBar, } from 'react-native-scrollable-tab-view';
-import TabViewItem from './TabViewItem'; 
+import TabViewItem from './TabViewItem';
+import { toastShort } from './Utils/ToastUtil'
+
+import UserInfo from './page/user/UserInfo';
+import Animation from './Utils/Animation';
 
 export default class MainPage extends Component {
-    constructor(props) {
-        super(props);
-
-        this.state = {
-            tabNames: ['电影', '影院', '发现', '我的'],
-            tabIconNames: ['md-videocam', 'ios-albums', 'ios-paper', 'ios-person'],
-        };
+    componentDidMount() {
+        toastShort(this.props.from);
     }
+
+
+    onBackAndroid = () => {
+        var timestamp = (new Date()).valueOf();
+        const { navigator } = this.props;
+        if (navigator) {
+            const routers = navigator.getCurrentRoutes();
+            // toastShort('当前路由长度：' + routers.length);
+            if (routers.length > 1) {
+                //navigator.pop(); 
+            } else {
+                if (this.lastBackPressed && this.lastBackPressed + 2000 >= Date.now()) {
+                    BackAndroid.exitApp();
+                } else {
+                    toastShort('再按一次退出应用');
+                }
+            }
+        }
+
+        this.lastBackPressed = Date.now();
+
+        return true;//默认行为  
+    };
+
 
     renderContent(url) {
         return (
@@ -35,6 +59,9 @@ export default class MainPage extends Component {
                 javaScriptEnabled={true}
                 domStorageEnabled={true}
                 scrollEnabled={true}
+                renderLoading={() => {
+
+                }}
                 decelerationRate="normal"
                 startInLoadingState={true} />
         );
@@ -55,13 +82,12 @@ export default class MainPage extends Component {
                 <Icon name="md-apps"  
                         size={100}
                         color="#FF7256" />
-                        {this.renderContent('http://v2ex.com')} */} 
+                        {this.renderContent('http://v2ex.com')} */}
                 <ScrollableTabView
                     style={styles.container}
                     ref="tabView"
                     tabBarPosition="bottom"
-                    renderTabBar={() => <TabViewItem tabNames={this.state.tabNames} tabIconNames={this.state.tabIconNames} />}
-                    select
+                    renderTabBar={() => <TabViewItem />} 
                     scrollWithoutAnimation={true}>
 
                     <View style={styles.tab} tabLabel='key1'>
@@ -77,7 +103,9 @@ export default class MainPage extends Component {
                     </View>
 
                     <View style={styles.tab} tabLabel='key4'>
-                        {this.renderContent('http://m.maizuo.com/v4/?co=maizuo#!/login?redirect_uri=%23!%2Fcenter')}
+                        {/*{this.renderContent('http://m.maizuo.com/v4/?co=maizuo#!/login?redirect_uri=%23!%2Fcenter')}*/}
+
+                        <UserInfo from = {this.props.from} />
                     </View>
 
 

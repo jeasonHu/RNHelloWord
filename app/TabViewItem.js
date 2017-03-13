@@ -10,10 +10,17 @@ import {
 
 
 import Icon from 'react-native-vector-icons/Ionicons';
+import { toastShort } from './Utils/ToastUtil'
+
 
 export default class TabViewItem extends Component {
 
+    static defaultProps = {
+        tabNames: ['电影', '影院', '发现', '我的'],
+        tabIconNames: ['md-videocam', 'ios-albums', 'ios-paper', 'ios-person']
+    }
     static propTypes = {
+        //ScrollableTabView 属性
         goToPage: React.PropTypes.func, // 跳转到对应tab的方法
         activeTab: React.PropTypes.number, // 当前被选中的tab下标
         tabs: React.PropTypes.array, // 所有tabs集合
@@ -23,20 +30,26 @@ export default class TabViewItem extends Component {
     }
 
     setAnimationValue({ value }) {
-        console.log(value);
+        // console.log(value);
     }
 
     componentDidMount() {
         // Animated.Value监听范围 [0, tab数量-1]
-        this.props.scrollValue.addListener(this.setAnimationValue);
+        // this.props.scrollValue.addListener(this.setAnimationValue);
     }
 
     renderTabOption(tab, i) {
+        console.log('renderTabOption:' + this.props.activeTab);
+
         let color = this.props.activeTab == i ? "#FF8C69" : "#636363"; // 判断i是否是当前选中的tab，设置不同的颜色
         return (
-            <TouchableOpacity key={i} onPress={() => this.props.goToPage(i)} style={styles.tab}>
+            <TouchableOpacity key={i} onPress={() => {
+                                                //toastShort(i), 
+                                                this.props.goToPage(i) 
+                                            }} 
+                                        style={styles.tab}>
                 <View style={styles.tabItem}>
-                    <Icon 
+                    <Icon
                         name={this.props.tabIconNames[i]} // 图标
                         size={30}
                         color={color} />
