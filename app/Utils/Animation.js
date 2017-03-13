@@ -23,7 +23,9 @@ export default class MyAnimation extends Component {
             currentAlpha: 0.0,//标志位，记录当前value
             fadeAnim: new Animated.Value(0.0)
         };
-    } 
+    }
+ 
+
     startAnimation() {
         this.state.currentAlpha = this.state.currentAlpha == 1.0 ? 0.0 : 1.0;
         Animated.timing(
@@ -32,21 +34,9 @@ export default class MyAnimation extends Component {
         ).start();
     }
 
-    pressButton(type) {
-        switch (type) {
-            case 'Login':
-
-
-                break;
-            default:
-                toastShort('default');
-                break;
-        }
-    }
-
     render() {
         return (
-            <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+            <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: '#D1EEEE', }}>
                 <Animated.Text style={{
                     opacity: this.state.fadeAnim, //透明度动画
                     transform: [//transform动画
@@ -61,7 +51,7 @@ export default class MyAnimation extends Component {
                         },
                     ],
                 }}>
-                    <Text>MainPage from {this.props.from}</Text>
+                    <Text  style={{color:'blue'}}>MyAnimation from {this.props.from}</Text>
                 </Animated.Text>
 
 

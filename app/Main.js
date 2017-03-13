@@ -15,31 +15,35 @@ import {
 import ScrollableTabView, { DefaultTabBar, ScrollableTabBar, } from 'react-native-scrollable-tab-view';
 import TabViewItem from './TabViewItem';
 import { toastShort } from './Utils/ToastUtil'
-//import MyAnimation from './Utils/Animation';
+
 
 
 import UserInfo from './page/user/UserInfo';
 
-export default class MainPage extends Component { 
+export default class MainPage extends Component {
+
+    constructor(props) {
+        super(props);
+    }
     componentDidMount() {
         if (Platform.OS === 'android') {
+            console.log('Main  componentDidMount');
             BackAndroid.addEventListener('hardwareBackPress', this.onBackAndroid);
         }
     }
-    componentWillUnmount() {
+    componentWillUnmount() { 
         if (Platform.OS === 'android') {
+            console.log('Main  componentWillUnmount');
             BackAndroid.removeEventListener('hardwareBackPress', this.onBackAndroid);
         }
     }
-
-
     onBackAndroid = () => {
         const { navigator } = this.props;
         if (navigator) {
             const routers = navigator.getCurrentRoutes();
-            // toastShort('当前路由长度：' + routers.length);
+            console.log('当前路由长度：' + routers.length);
             if (routers.length > 1) {
-                //navigator.pop(); 
+                navigator.pop();
             } else {
                 if (this.lastBackPressed && this.lastBackPressed + 2000 >= Date.now()) {
                     BackAndroid.exitApp();
@@ -98,9 +102,9 @@ export default class MainPage extends Component {
                     </View>
 
                     <View style={styles.tab} tabLabel='key4'>
-                         {/*{this.renderContent('http://m.maizuo.com/v4/?co=maizuo#!/login?redirect_uri=%23!%2Fcenter')}*/}
+                        {/*{this.renderContent('http://m.maizuo.com/v4/?co=maizuo#!/login?redirect_uri=%23!%2Fcenter')}*/}
 
-                        <UserInfo from={this.props.from} />
+                        <UserInfo from={this.props.from} navigator={this.props.navigator} />
                     </View>
 
 

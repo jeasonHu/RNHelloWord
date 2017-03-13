@@ -22,7 +22,7 @@ export default class EnterPage extends Component {
                 if (navigator) {
                     //  navigator.push({
                     navigator.replace({
-                        component: MainPage,
+                        component: MainPage, 
                         params: {
                             from: 'EnterPage'
                         }

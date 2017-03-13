@@ -14,7 +14,10 @@ import {
 
 
 import Icon from 'react-native-vector-icons/FontAwesome';
-import { toastShort } from './../../Utils/ToastUtil'
+import toastShort from './../../Utils/ToastUtil'
+import MyAnimation from './../../Utils/Animation'
+
+
 
 export default class UserInfo extends Component {
 
@@ -24,9 +27,20 @@ export default class UserInfo extends Component {
         switch (type) {
             case 'Login':
 
-                toastShort(type); 
+                toastShort(type);
                 break;
             case 'Animation':
+                const { navigator } = this.props; 
+                if (navigator) {
+                    navigator.push({
+                        component: MyAnimation,
+                        params: {
+                            from: 'UserInfo'
+                        }
+                    });
+                } else { 
+                    toastShort('navigator is null');
+                }
 
 
                 break;
@@ -40,13 +54,9 @@ export default class UserInfo extends Component {
         return (
             <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
 
-                <Text>MainPage from {this.props.from}</Text>
+                <Text>MainPage from {this.props.from}</Text> 
 
-
-
-
-
-                <Icon.Button name="cloud" backgroundColor="#3b5998" onPress={() => this.pressButton('Login')}>
+                <Icon.Button name="cloud" backgroundColor="#3b5998" onPress={this.pressButton.bind(this,'Login')}>
                     {/*<Icon.Button name="cloud" backgroundColor="#3b5998" onPress={this.pressButton.bind(this, 'Login1')}>*/}
                     <Text style={{ fontFamily: 'Arial', fontSize: 12, color: '#F5FCFF' }}>Login with Test</Text>
                 </Icon.Button>
@@ -54,9 +64,9 @@ export default class UserInfo extends Component {
 
 
                 <Text>excute Loading Animation</Text>
-                 <Icon.Button name="facebook" backgroundColor="#3b5998" onPress={() => this.pressButton('Login1')}>
+                <Icon.Button name="facebook" backgroundColor="#3b5998" onPress={this.pressButton.bind(this,'Animation')}>
                     {/*<Icon.Button name="cloud" backgroundColor="#3b5998" onPress={this.pressButton.bind(this, 'Login1')}>*/}
-                    <Text style={{ fontFamily: 'Arial', fontSize: 12, color: '#F5FCFF' }}>Login with Test</Text>
+                    <Text style={{ fontFamily: 'Arial', fontSize: 12, color: '#F5FCFF' }}>To Animation</Text>
                 </Icon.Button>
             </View>
 
