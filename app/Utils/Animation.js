@@ -15,7 +15,7 @@ import {
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { toastShort } from './ToastUtil'
 
-export default class Animation extends Component {
+export default class MyAnimation extends Component {
 
     constructor(props) {
         super(props);

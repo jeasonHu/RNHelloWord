@@ -15,18 +15,25 @@ import {
 import ScrollableTabView, { DefaultTabBar, ScrollableTabBar, } from 'react-native-scrollable-tab-view';
 import TabViewItem from './TabViewItem';
 import { toastShort } from './Utils/ToastUtil'
+//import MyAnimation from './Utils/Animation';
+
 
 import UserInfo from './page/user/UserInfo';
-import Animation from './Utils/Animation';
 
-export default class MainPage extends Component {
+export default class MainPage extends Component { 
     componentDidMount() {
-        toastShort(this.props.from);
+        if (Platform.OS === 'android') {
+            BackAndroid.addEventListener('hardwareBackPress', this.onBackAndroid);
+        }
+    }
+    componentWillUnmount() {
+        if (Platform.OS === 'android') {
+            BackAndroid.removeEventListener('hardwareBackPress', this.onBackAndroid);
+        }
     }
 
 
     onBackAndroid = () => {
-        var timestamp = (new Date()).valueOf();
         const { navigator } = this.props;
         if (navigator) {
             const routers = navigator.getCurrentRoutes();
@@ -42,9 +49,9 @@ export default class MainPage extends Component {
             }
         }
 
-        this.lastBackPressed = Date.now();
+        this.lastBackPressed = (new Date()).valueOf();
 
-        return true;//默认行为  
+        return true;
     };
 
 
@@ -53,15 +60,12 @@ export default class MainPage extends Component {
 
             <WebView
                 style={{ flex: 1 }}
-                ref="AAA"
+                ref="webview"
                 automaticallyAdjustContentInsets={false}
                 source={{ uri: url }}
                 javaScriptEnabled={true}
                 domStorageEnabled={true}
                 scrollEnabled={true}
-                renderLoading={() => {
-
-                }}
                 decelerationRate="normal"
                 startInLoadingState={true} />
         );
@@ -73,21 +77,12 @@ export default class MainPage extends Component {
     render() {
         return (
             <View style={styles.container}>
-                {/*<TouchableOpacity  >
-                    <Text>MainPage from {this.props.from}</Text>
-                </TouchableOpacity>
-                <Text>https://sanwen8.cn/p/28aALep.html {'\n'}
-                    react-native-scrollable-tab-view {'\n'}
-                    ref="okButton"</Text>
-                <Icon name="md-apps"  
-                        size={100}
-                        color="#FF7256" />
-                        {this.renderContent('http://v2ex.com')} */}
+
                 <ScrollableTabView
                     style={styles.container}
                     ref="tabView"
                     tabBarPosition="bottom"
-                    renderTabBar={() => <TabViewItem />} 
+                    renderTabBar={() => <TabViewItem />}
                     scrollWithoutAnimation={true}>
 
                     <View style={styles.tab} tabLabel='key1'>
@@ -103,9 +98,9 @@ export default class MainPage extends Component {
                     </View>
 
                     <View style={styles.tab} tabLabel='key4'>
-                        {/*{this.renderContent('http://m.maizuo.com/v4/?co=maizuo#!/login?redirect_uri=%23!%2Fcenter')}*/}
+                         {/*{this.renderContent('http://m.maizuo.com/v4/?co=maizuo#!/login?redirect_uri=%23!%2Fcenter')}*/}
 
-                        <UserInfo from = {this.props.from} />
+                        <UserInfo from={this.props.from} />
                     </View>
 
 

@@ -8,6 +8,7 @@ import {
     Text,
     Button,
     Animated,
+    Platform,
 }
     from 'react-native';
 
@@ -22,6 +23,10 @@ export default class UserInfo extends Component {
     pressButton(type) {
         switch (type) {
             case 'Login':
+
+                toastShort(type); 
+                break;
+            case 'Animation':
 
 
                 break;
@@ -41,7 +46,15 @@ export default class UserInfo extends Component {
 
 
 
-                <Icon.Button name="cloud" backgroundColor="#3b5998" onPress={() => this.pressButton('Login1')}>
+                <Icon.Button name="cloud" backgroundColor="#3b5998" onPress={() => this.pressButton('Login')}>
+                    {/*<Icon.Button name="cloud" backgroundColor="#3b5998" onPress={this.pressButton.bind(this, 'Login1')}>*/}
+                    <Text style={{ fontFamily: 'Arial', fontSize: 12, color: '#F5FCFF' }}>Login with Test</Text>
+                </Icon.Button>
+
+
+
+                <Text>excute Loading Animation</Text>
+                 <Icon.Button name="facebook" backgroundColor="#3b5998" onPress={() => this.pressButton('Login1')}>
                     {/*<Icon.Button name="cloud" backgroundColor="#3b5998" onPress={this.pressButton.bind(this, 'Login1')}>*/}
                     <Text style={{ fontFamily: 'Arial', fontSize: 12, color: '#F5FCFF' }}>Login with Test</Text>
                 </Icon.Button>

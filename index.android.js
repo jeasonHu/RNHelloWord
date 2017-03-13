@@ -16,6 +16,8 @@ import {
 import Indexroot from './app/index'; 
 
 export default class RNHelloWord extends Component {
+
+  
   render() {
     return (
       <Indexroot />

@@ -14,18 +14,7 @@ import EnterPage from './Enterpage';
 
 
 export default class indexroot extends Component {
-
-    componentDidMount() {
-        if (Platform.OS === 'android') {
-            BackAndroid.addEventListener('hardwareBackPress', this.onBackAndroid);
-        }
-    }
-    componentWillUnmount() {
-        if (Platform.OS === 'android') {
-            BackAndroid.removeEventListener('hardwareBackPress', this.onBackAndroid);
-        }
-    }
-
+    
 
     render() {
 

@@ -3,8 +3,9 @@ import {
     View,
     Image,
     StyleSheet,
-    StatusBar,
-    Text,
+    StatusBar,  
+  Platform,
+  BackAndroid,
 } from 'react-native';
 
 import MainPage from './Main'
@@ -15,10 +16,18 @@ let { width, height } = Dimensions.get('window');
 
 
 export default class EnterPage extends Component {
+componentDidMount() {
+        if (Platform.OS === 'android') {
+            BackAndroid.addEventListener('hardwareBackPress', this.onBackAndroid);
+        }
+    }
+    componentWillUnmount() {
+        if (Platform.OS === 'android') {
+            BackAndroid.removeEventListener('hardwareBackPress', this.onBackAndroid);
+        }
+    }
     componentDidMount() {
-        this.timer = setTimeout(
-            () => {
-                
+        this.timer = setTimeout(() => { 
                 console.log('componentDidMount to main');
                 const { navigator } = this.props;
                 if (navigator) {
