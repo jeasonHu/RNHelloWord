@@ -14,13 +14,14 @@ import {
 
 
 import Indexroot from './app/index'; 
+import App from './App'; 
 
 export default class RNHelloWord extends Component {
   
 
   render() {
     return (
-      <Indexroot />
+      <App />
     );
   }
 }
