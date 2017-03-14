@@ -16,7 +16,7 @@ let { width, height } = Dimensions.get('window');
 export default class EnterPage extends Component {
 
     componentDidMount() {
-        this.timer = setTimeout(() => { 
+        this.timer = setTimeout(() => {
                 console.log('componentDidMount to main');
                 const { navigator } = this.props;
                 if (navigator) {

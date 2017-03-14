@@ -8,7 +8,7 @@ import React, { Component } from 'react';
 import {
   AppRegistry,
 } from 'react-native';
-import Indexroot from './app/index';
+import Indexroot from './index';
 
 export default class RNHelloWord extends Component {
   render() {

@@ -14,9 +14,10 @@ import {
 
 
 import Icon from 'react-native-vector-icons/FontAwesome';
-import  { toastShort } from './../../Utils/ToastUtil'
-import MyAnimation from './../../Utils/Animation'
- 
+import { toastShort } from './../../Utils/ToastUtil'
+import MyAnimation from './../../AnimationTest'
+import Loading from './../../Utils/Loading/Loading'
+
 
 
 export default class UserInfo extends Component {
@@ -44,15 +45,30 @@ export default class UserInfo extends Component {
 
 
                 break;
+
+            case 'AnimationLoading':
+                let isShown = this.getLoading().getisShown();
+                //toastShort(isShown);
+                if (isShown) {
+                    this.getLoading().dismiss();
+                } else {
+                    this.getLoading().show('Loading...', true);
+                }
+
+                break;
             default:
                 toastShort('default');
                 break;
         }
     }
 
-    back(){
+    back() {
         //console.log('back========================================================');
         toastShort('back');
+    }
+
+    getLoading() {
+        return this.refs['loading'];
     }
 
     render() {
@@ -63,19 +79,26 @@ export default class UserInfo extends Component {
                 <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
                     <Text>MainPage from {this.props.from}</Text>
 
-                    <Icon.Button name="cloud" backgroundColor="#3b5998" onPress={this.back.bind(this) } >
+                    <Icon.Button name="cloud" backgroundColor="#3b5998" onPress={this.back.bind(this)} >
                         {/*<Icon.Button name="cloud" backgroundColor="#3b5998" onPress={this.pressButton.bind(this, 'Login1')}>*/}
                         <Text style={{ fontFamily: 'Arial', fontSize: 12, color: '#F5FCFF' }}>Login with Test</Text>
                     </Icon.Button>
 
 
 
-                    <Text>excute Loading Animation</Text>
+                    <Text>To Loading Animation</Text>
                     <Icon.Button name="facebook" backgroundColor="#3b5998" onPress={this.pressButton.bind(this, 'Animation')}>
                         {/*<Icon.Button name="cloud" backgroundColor="#3b5998" onPress={this.pressButton.bind(this, 'Login1')}>*/}
                         <Text style={{ fontFamily: 'Arial', fontSize: 12, color: '#F5FCFF' }}>To Animation</Text>
                     </Icon.Button>
+
+                    <Text>excute Loading Animation</Text>
+                    <Icon.Button name="facebook" backgroundColor="#3b5998" onPress={this.pressButton.bind(this, 'AnimationLoading')}>
+                        <Text style={{ fontFamily: 'Arial', fontSize: 12, color: '#F5FCFF' }}>To Loading</Text>
+                    </Icon.Button>
                 </View>
+
+                <Loading ref={'loading'} />
             </View>
 
         );

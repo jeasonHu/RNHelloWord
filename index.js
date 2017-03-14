@@ -5,20 +5,24 @@ import {
     View,
     StatusBar,
     Navigator,
+    Platform,
+    BackAndroid,
 }
     from 'react-native';
 
-import EnterPage from './Enterpage';
+import EnterPage from './app/Enterpage';
 
 
 export default class indexroot extends Component {
+    
 
     render() {
+
         let defaultName = 'indexroot';
         return (
             <View style={{ flex: 1, }}>
                 <StatusBar
-                    backgroundColor='#FF8C69'
+                    backgroundColor='#D1EEEE'
                     barStyle='light-content'
                     animated={true}
                     hidden={false}
@@ -28,12 +32,13 @@ export default class indexroot extends Component {
                     initialRoute={{ component: EnterPage }}
                     //切换动画
                     configureScene={(route) => {
-                        var conf = Navigator.SceneConfigs.HorizontalSwipeJump;
+                        let conf = Navigator.SceneConfigs.HorizontalSwipeJump;
                         conf.gestures = null;
                         return conf;
                     }}
 
-                    renderScene={(route, navigator) => { 
+                    renderScene={(route, navigator) => {
+
                         let Component = route.component;
                         if (Component) {
                             return <Component from={defaultName} {...route.params} navigator={navigator} />

@@ -13,8 +13,8 @@ import {
 
 
 import Icon from 'react-native-vector-icons/FontAwesome';
-import { toastShort } from './ToastUtil'
-import TitleBar from './TitleBar';
+import { toastShort } from './Utils/ToastUtil'
+import TitleBar from './Utils/TitleBar';
 
 
 export default class MyAnimation extends Component {

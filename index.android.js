@@ -13,15 +13,16 @@ import {
   from 'react-native';
 
 
-import Indexroot from './app/index'; 
+import Indexroot from './index'; 
 import App from './App'; 
+import UserInfo from './app/page/user/UserInfo';
 
 export default class RNHelloWord extends Component {
-  
+ 
 
   render() {
     return (
-      <App />
+      <UserInfo />
     );
   }
 }
