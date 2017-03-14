@@ -22,7 +22,7 @@ export default class indexroot extends Component {
         return (
             <View style={{ flex: 1, }}>
                 <StatusBar
-                    backgroundColor='#FF8C69'
+                    backgroundColor='#D1EEEE'
                     barStyle='light-content'
                     animated={true}
                     hidden={false}

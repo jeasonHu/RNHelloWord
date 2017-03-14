@@ -8,26 +8,15 @@ import React, {
   Component
 } from 'react';
 import {
-  AppRegistry,
-  Platform,
-  BackAndroid,
+  AppRegistry, 
 }
   from 'react-native';
 
 
-import Indexroot from './app/index';
+import Indexroot from './app/index'; 
 
 export default class RNHelloWord extends Component {
-  componentDidMount() {
-    if (Platform.OS === 'android') {
-      BackAndroid.addEventListener('hardwareBackPress', this.onBackAndroid);
-    }
-  }
-  componentWillUnmount() {
-    if (Platform.OS === 'android') {
-     // BackAndroid.removeEventListener('hardwareBackPress', this.onBackAndroid);
-    }
-  }
+  
 
   render() {
     return (

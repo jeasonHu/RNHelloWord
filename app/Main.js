@@ -37,6 +37,7 @@ export default class MainPage extends Component {
             BackAndroid.removeEventListener('hardwareBackPress', this.onBackAndroid);
         }
     }
+    
     onBackAndroid = () => {
         const { navigator } = this.props;
         if (navigator) {
