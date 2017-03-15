@@ -4,9 +4,7 @@ import React, {
 import {
     View,
     StatusBar,
-    Navigator,
-    Platform,
-    BackAndroid,
+    Navigator, 
 }
     from 'react-native';
 

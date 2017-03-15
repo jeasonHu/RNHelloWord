@@ -8,13 +8,13 @@ import {
     Button,
     TouchableOpacity,
     Navigator,
-    WebView,
     Platform,
     BackAndroid,
 } from 'react-native';
 import ScrollableTabView, { DefaultTabBar, ScrollableTabBar, } from 'react-native-scrollable-tab-view';
 import TabViewItem from './TabViewItem';
 import { toastShort } from './Utils/ToastUtil'
+import MyWebView from './Utils/WebView'
 
 
 
@@ -31,13 +31,13 @@ export default class MainPage extends Component {
             BackAndroid.addEventListener('hardwareBackPress', this.onBackAndroid);
         }
     }
-    componentWillUnmount() { 
+    componentWillUnmount() {
         if (Platform.OS === 'android') {
             console.log('Main  componentWillUnmount');
             BackAndroid.removeEventListener('hardwareBackPress', this.onBackAndroid);
         }
     }
-    
+
     onBackAndroid = () => {
         const { navigator } = this.props;
         if (navigator) {
@@ -63,16 +63,8 @@ export default class MainPage extends Component {
     renderContent(url) {
         return (
 
-            <WebView
-                style={{ flex: 1 }}
-                ref="webview"
-                automaticallyAdjustContentInsets={false}
-                source={{ uri: url }}
-                javaScriptEnabled={true}
-                domStorageEnabled={true}
-                scrollEnabled={true}
-                decelerationRate="normal"
-                startInLoadingState={true} />
+            <MyWebView url={url} />
+           
         );
 
     }
@@ -103,13 +95,12 @@ export default class MainPage extends Component {
                     </View>
 
                     <View style={styles.tab} tabLabel='key4'>
-                        {/*{this.renderContent('http://m.maizuo.com/v4/?co=maizuo#!/login?redirect_uri=%23!%2Fcenter')}*/}
-
                         <UserInfo from={this.props.from} navigator={this.props.navigator} />
                     </View>
 
 
                 </ScrollableTabView>
+                
             </View>
         )
     }

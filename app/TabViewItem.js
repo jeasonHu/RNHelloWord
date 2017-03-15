@@ -39,7 +39,7 @@ export default class TabViewItem extends Component {
     }
 
     renderTabOption(tab, i) {
-        console.log('renderTabOption:' + this.props.activeTab);
+        //console.log('renderTabOption:' + this.props.activeTab);
 
         let color = this.props.activeTab == i ? "#FF8C69" : "#636363"; // 判断i是否是当前选中的tab，设置不同的颜色
         return (

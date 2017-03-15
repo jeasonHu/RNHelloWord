@@ -20,14 +20,31 @@ export default class Loading extends React.Component {
 
     static LOADING_WIDTH = 100;
     static LOADING_HEIGHT = 80;
- 
+
 
     constructor(props) {
         super(props);
         this.isShown = false;
+        this.Titleheight = 55;
         this.state = {
             loading: (<View />),
-        } 
+        }
+
+
+
+    }
+
+    componentDidMount() {
+        if (this.props.initshow) {
+            this.Titleheight = 0;
+            this.setState({
+                loading: this._getLoading({
+                    ...this.props,
+                    text: 'Loading...',
+                    pointerEvents: false
+                })
+            });
+        }
     }
 
     render() {
@@ -35,6 +52,7 @@ export default class Loading extends React.Component {
     }
 
     show(text, pointerEvents) {
+        this.Titleheight = 0;
         if (!this.isShown) {
             if (typeof (text) == 'boolean') {
                 pointerEvents = text;
@@ -48,10 +66,31 @@ export default class Loading extends React.Component {
                     pointerEvents: pointerEvents
                 })
             });
-            
+
             this.isShown = true;
         }
     }
+
+    showOutTitleBar(text, pointerEvents) {
+        this.Titleheight = 55;
+        if (!this.isShown) {
+            if (typeof (text) == 'boolean') {
+                pointerEvents = text;
+                text = '';
+            }
+            text = text ? text : 'Loading...';
+            this.setState({
+                loading: this._getLoading({
+                    ...this.props,
+                    text: text,
+                    pointerEvents: pointerEvents
+                })
+            });
+
+            this.isShown = true;
+        }
+    }
+
 
     dismiss() {
         if (this.isShown) {
@@ -59,7 +98,6 @@ export default class Loading extends React.Component {
                 loading: (<View />)
             });
             this.isShown = false;
-            this.timeoutEvent && clearInterval(this.timeoutEvent);
         }
     }
 
@@ -67,17 +105,17 @@ export default class Loading extends React.Component {
     getisShown() {
         return this.isShown;
     }
- 
+
 
     _getLoading(props) {
-        
+
         return (
-            <View pointerEvents={!!props && props.pointerEvents ? 'none' : 'auto'} style={styles.container}>
-                <View pointerEvents={'none'} style={styles.loadingBg} />
+            <View pointerEvents={!!props && props.pointerEvents ? 'none' : 'auto'} style={[styles.container]}>
+                <View pointerEvents={'none'} style={[styles.loadingBg, { top: this.Titleheight, }]} />
                 <View style={styles.loadingBody}>
                     <CircleProgress />
                     <Text style={styles.loadingText}>
-                        {!!props && props.text ? props.text : 'AAAA'}
+                        {!!props && props.text ? props.text : 'Loading...'}
                     </Text>
                 </View>
             </View>
@@ -92,7 +130,7 @@ const styles = StyleSheet.create({
         position: 'absolute',
         top: 0,
         width: SCREEN_WIDTH,
-        height: SCREEN_HEIGHT
+        height: SCREEN_HEIGHT,
     },
     loadingBg: {
         position: 'absolute',
