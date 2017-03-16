@@ -3,28 +3,22 @@ import React, {
 } from 'react';
 import {
     View,
-    StatusBar,
-    Navigator, 
+    Navigator,
 }
-    from 'react-native';
+from 'react-native';
 
 import EnterPage from './app/Enterpage';
 
 
 export default class indexroot extends Component {
-    
+
 
     render() {
 
         let defaultName = 'indexroot';
         return (
             <View style={{ flex: 1, }}>
-                <StatusBar
-                    backgroundColor='#D1EEEE'
-                    barStyle='light-content'
-                    animated={true}
-                    hidden={false}
-                />
+                
                 <Navigator
                     style={{ flex: 1, }}
                     initialRoute={{ component: EnterPage }}

@@ -10,11 +10,13 @@ import {
     Animated,
     Platform,
 }
-    from 'react-native';
+from 'react-native';
 
 
 import Icon from 'react-native-vector-icons/FontAwesome';
-import { toastShort } from './../../Utils/ToastUtil'
+import {
+    toastShort
+} from './../../Utils/ToastUtil'
 import Loading from './../../Utils/Loading/Loading'
 
 import Login from './Login'
@@ -24,7 +26,9 @@ export default class UserInfo extends Component {
     constructor(props) {
         super(props);
 
-        this.state = { user: '' }
+        this.state = {
+            user: ''
+        }
     }
 
 
@@ -32,13 +36,15 @@ export default class UserInfo extends Component {
         switch (type) {
             case 'Login':
                 let _this = this;
-                const { navigator } = this.props;
+                const {
+                    navigator
+                } = this.props;
                 if (navigator) {
                     navigator.push({
                         component: Login,
                         params: {
                             from: 'UserInfo',
-                            setUser: function (user) {
+                            setUser: function(user) {
                                 _this.setState({
                                     user: user
                                 })

@@ -1,5 +1,6 @@
-
-import React, { Component } from 'react';
+import React, {
+    Component
+} from 'react';
 import {
     View,
     Image,
@@ -11,7 +12,10 @@ import {
     Platform,
     BackAndroid,
 } from 'react-native';
-import ScrollableTabView, { DefaultTabBar, ScrollableTabBar, } from 'react-native-scrollable-tab-view';
+import ScrollableTabView, {
+    DefaultTabBar,
+    ScrollableTabBar,
+} from 'react-native-scrollable-tab-view';
 import TabViewItem from './TabViewItem';
 import { toastShort } from './Utils/ToastUtil'
 import MyWebView from './Utils/WebView'
@@ -39,7 +43,9 @@ export default class MainPage extends Component {
     }
 
     onBackAndroid = () => {
-        const { navigator } = this.props;
+        const {
+            navigator
+        } = this.props;
         if (navigator) {
             const routers = navigator.getCurrentRoutes();
             console.log('当前路由长度：' + routers.length);
@@ -64,7 +70,7 @@ export default class MainPage extends Component {
         return (
 
             <MyWebView url={url} />
-           
+
         );
 
     }
@@ -100,7 +106,7 @@ export default class MainPage extends Component {
 
 
                 </ScrollableTabView>
-                
+
             </View>
         )
     }

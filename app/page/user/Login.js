@@ -8,12 +8,15 @@ import {
     Text,
     Button,
     Animated,
+    ;
 }
-    from 'react-native';
+from 'react-native';
 
 
 import Icon from 'react-native-vector-icons/FontAwesome';
-import { toastShort } from './../../Utils/ToastUtil'
+import {
+    toastShort
+} from './../../Utils/ToastUtil'
 import TitleBar from './../../Utils/TitleBar';
 import EditView from './../../Utils/EditView';
 import Loading from './../../Utils/Loading/Loading'
@@ -30,9 +33,10 @@ export default class Login extends Component {
 
 
     back() {
-        const { navigator } = this.props;
+        const {
+            navigator
+        } = this.props;
         if (navigator) {
-            //很熟悉吧，入栈出栈~ 把当前的页面pop掉，这里就返回到了上一个页面:FirstPageComponent了
             navigator.pop();
         }
     }
@@ -76,6 +80,12 @@ export default class Login extends Component {
     render() {
         return (
             <View style={{ flex: 1, backgroundColor: '#ffffff' }}>
+                <StatusBar
+                    backgroundColor='#feca00'
+                    barStyle='light-content'
+                    animated={true}
+                    hidden={false}
+                />
                 <TitleBar textcontent='登录' textcolor='#595959' backgroundColor='#ffdc55' leftClick={this.back.bind(this)} />
 
 
