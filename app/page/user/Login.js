@@ -7,8 +7,7 @@ import {
     Navigator,
     Text,
     Button,
-    Animated,
-    ;
+    Animated, 
 }
 from 'react-native';
 
@@ -52,6 +51,7 @@ export default class Login extends Component {
 
 
     Login() {
+        console.log('Login--============================');
         if (this.userName) {
             if (this.password) {
                 this.Loading();
@@ -87,7 +87,6 @@ export default class Login extends Component {
                     hidden={false}
                 />
                 <TitleBar textcontent='登录' textcolor='#595959' backgroundColor='#ffdc55' leftClick={this.back.bind(this)} />
-
 
                 <View style={{ flex: 1, padding: 30, }}>
 

@@ -48,6 +48,7 @@ export default class UserInfo extends Component {
                                 _this.setState({
                                     user: user
                                 })
+                                console.log(_this.state.user);
                             }
                         }
                     });
