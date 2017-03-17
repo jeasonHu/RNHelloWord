@@ -13,8 +13,7 @@ import {
   from 'react-native';
 
 
-import App from './App';  
-import UserInfo from './app/page/user/UserInfo';
+import App from './App';   
 
 export default class RNHelloWord extends Component {
  
