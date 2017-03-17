@@ -3,41 +3,27 @@ import React, {
 } from 'react';
 import {
     View,
-    Navigator,
-}
+} 
 from 'react-native';
+import { Provider } from 'react-redux';
 
-import EnterPage from './app/Enterpage';
+import configureStore from './app/Redux/store/store';
+
+import Indexroot from './app/index';
+
+const store = configureStore();
 
 
-export default class indexroot extends Component {
+export default class app extends Component {
 
 
     render() {
 
-        let defaultName = 'indexroot';
+
         return (
-            <View style={{ flex: 1, }}>
-                
-                <Navigator
-                    style={{ flex: 1, }}
-                    initialRoute={{ component: EnterPage }}
-                    //切换动画
-                    configureScene={(route) => {
-                        let conf = Navigator.SceneConfigs.HorizontalSwipeJump;
-                        conf.gestures = null;
-                        return conf;
-                    }}
-
-                    renderScene={(route, navigator) => {
-
-                        let Component = route.component;
-                        if (Component) {
-                            return <Component from={defaultName} {...route.params} navigator={navigator} />
-                        }
-                    }}
-                />
-            </View>
+            <Provider store={store}>
+                <Indexroot />
+            </Provider>
 
         );
     }
