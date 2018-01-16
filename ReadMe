@@ -1,0 +1,15 @@
+1.启动项目
+    1.1 cd到项目目录   react-native start   启动服务
+    1.2 react-native  react-native run-android/run-ios
+    1.3 1.摇晃手机（也可以按menu键，不过现在较新版的手机已经去除这个键了）
+        2.点击Dev Settings
+        3.点击Debug server host&port for devices
+        输入 ip地址:端口号， 如192.168.2.1:8081,Ip地址根据本机而定，端口号固定为8081
+
+2.  React-Redux
+    Provider  store  公共状态管理树
+
+
+3.网络请求：
+  http://blog.csdn.net/sinat_17775997/article/details/70054407
+

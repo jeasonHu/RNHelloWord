@@ -17,7 +17,7 @@
       android:icon="@mipmap/maizuo_logo"
       android:theme="@style/AppTheme">
       <activity
-        android:name=".MainActivity"
+        android:name=".RNMainActivity"
         android:label="@string/app_name" 
         android:configChanges="keyboard|keyboardHidden|orientation|screenSize"
         android:windowSoftInputMode="adjustResize">
